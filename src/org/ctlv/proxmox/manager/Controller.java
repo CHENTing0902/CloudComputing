@@ -19,7 +19,7 @@ public class Controller {
 	}
 	
 	// migrer un conteneur du serveur "srcServer" vers le serveur "dstServer"
-	public void migrateFromTo(String srcServer, String dstServer) throws LoginException, JSONException, IOException  {
+	public void migrateFromTo(String srcServer, String dstServer) throws LoginException, JSONException, IOException, InterruptedException  {
 		List<LXC> cts = api.getCTs(srcServer);
 		List<LXC> myCts = new ArrayList<>();
 		
@@ -30,6 +30,10 @@ public class Controller {
 		}
 		
 		String ctID = myCts.get(myCts.size() - 1).getVmid();
+		api.stopCT(srcServer, ctID);
+		while (api.getCT(srcServer, ctID).getStatus() != "stopped") {
+			Thread.sleep(1000);
+		}
 		api.migrateCT(srcServer, ctID, dstServer);
 	}
 

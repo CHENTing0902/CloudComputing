@@ -7,8 +7,8 @@ public class ManagerMain {
 	public static void main(String[] args) throws Exception {
 		ProxmoxAPI api = new ProxmoxAPI();
 		Controller controller = new Controller(api);
-		Analyzer analyzer = new Analyzer(api, controller );
-		Monitor monitor = new Monitor(api , analyzer );
+		Analyzer analyzer = new Analyzer(api, controller);
+		Monitor monitor = new Monitor(api , analyzer);
 
 		monitor.run();
 	}

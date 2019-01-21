@@ -47,7 +47,7 @@ public class GeneratorMain {
 		long memAllowedOnServer1 = (long) (api.getNode(Constants.SERVER1).getMemory_total() * Constants.MAX_THRESHOLD);
 		long memAllowedOnServer2 = (long) (api.getNode(Constants.SERVER2).getMemory_total() * Constants.MAX_THRESHOLD);
 		
-		int last_vmid=2100;
+		int last_vmid = (int) Constants.CT_BASE_ID;
 		
 		while (true) {
 			
@@ -97,8 +97,11 @@ public class GeneratorMain {
 				
 				// cr�er un contenaire sur ce serveur
 				int new_vmid = last_vmid + 1;
+				System.out.println("Creating CT " + new_vmid + " ....");
 				api.createCT(serverName, Integer.toString(new_vmid), Constants.CT_BASE_NAME + Integer.toString(new_vmid%100), 512);
-								
+//				Thread.sleep(Constants.GENERATION_WAIT_TIME * 1000);
+//				api.startCT(serverName, Integer.toString(new_vmid));
+				
 				// planifier la prochaine cr�ation
 				int timeToWait = getNextEventExponential(lambda); // par exemple une loi expo d'une moyenne de 30sec
 				
@@ -107,7 +110,7 @@ public class GeneratorMain {
 			}
 			else {
 				System.out.println("Servers are loaded, waiting ...");
-				Thread.sleep(Constants.GENERATION_WAIT_TIME* 1000);
+				Thread.sleep(Constants.GENERATION_WAIT_TIME * 1000);
 			}
 		}
 		

@@ -12,7 +12,7 @@ public class Constants {
 	public static String SERVER1 = "srv-px5";  // exemple "srv-px2" XXX
 	public static String SERVER2 = "srv-px6";  // XXX
 	public static String CT_BASE_NAME = "ct-tpgei-virt-B1-ct";  // "XX" � remplacer par votre num�ro de bin�me. Exemple: ct-tpgei-virt-A3-ct � concat�ner avec le num�ro du CT
-	public static long CT_BASE_ID = 2100;	 // � modifier (cf. sujet de tp) XXX
+	public static long CT_BASE_ID = 6100;	 // � modifier (cf. sujet de tp) XXX
 
 	
 	public static long GENERATION_WAIT_TIME = 10;

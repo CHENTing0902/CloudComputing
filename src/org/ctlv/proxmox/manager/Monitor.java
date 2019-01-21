@@ -21,14 +21,13 @@ public class Monitor implements Runnable {
 	public Monitor(ProxmoxAPI api, Analyzer analyzer) {
 		this.api = api;
 		this.analyzer = analyzer;
+		
 	}
 	
 
 	@Override
 	public void run() {
-		
 		while(true) {
-			
 			// R�cup�rer les donn�es sur les serveurs
 			
 
@@ -58,10 +57,10 @@ public class Monitor implements Runnable {
 				
 				myCTsPerServer.put(Constants.SERVER1, myCts1);
 				myCTsPerServer.put(Constants.SERVER2, myCts2);
-				
+
 				analyzer.analyze(myCTsPerServer);
 				
-			} catch (LoginException | JSONException | IOException e) {
+			} catch (LoginException | JSONException | IOException | InterruptedException e) {
 				e.printStackTrace();
 			}
 
